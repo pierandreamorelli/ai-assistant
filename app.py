@@ -1,18 +1,17 @@
 import streamlit as st
 import time
-import os
 from openai import OpenAI
 
 st.set_page_config(page_title="Sereno AI", page_icon="💬", layout="centered")
 
 # Initialize OpenAI client
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 if not OPENAI_API_KEY:
     st.error("OPENAI_API_KEY mancante nei secrets.")
     st.stop()
 
 client = OpenAI(api_key=OPENAI_API_KEY)
-ASSISTANT_ID = os.getenv("ASSISTANT_ID")
+ASSISTANT_ID = st.secrets["ASSISTANT_ID"]
 if not ASSISTANT_ID:
     st.error("ASSISTANT_ID mancante nei secrets.")
     st.stop()
